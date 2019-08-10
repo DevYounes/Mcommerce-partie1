@@ -88,6 +88,7 @@ public class ProductController {
     }
 
 
+
     //calculer la marge d'un produit
     @GetMapping(value = "/AdminProduits")
     @ApiOperation(value = "Calculer la marge de chaque produit (différence entre prix d‘achat et prix de vente)")
@@ -98,6 +99,13 @@ public class ProductController {
             productsWithMargin.put(product, product.getPrix() - product.getPrixAchat());
         }
         return productsWithMargin;
+
+      
+    //tri par ordre alphabétique
+    @GetMapping(value = "/OrderByNameDesc")
+    @ApiOperation(value = "Tri par ordre alphabétique")
+    public List<Product> trierProduitsParOrdreAlphabetique(){
+        return productDao.findByOrderByNom();
     }
 
 }
